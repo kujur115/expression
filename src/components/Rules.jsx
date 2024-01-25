@@ -17,9 +17,24 @@ const Rules = (props) => {
       return;
     }
     setRules([
-      { key: type, output: { value: value, operator: operator, score: score } },
+      {
+        key: type,
+        output: {
+          value: value,
+          operator: operator,
+          score: score,
+        },
+      },
       ...rules,
     ]);
+    console.log("rules", rules);
+    clear();
+  };
+  const clear = () => {
+    setType("");
+    setOperator("");
+    setScore("");
+    setValue("");
   };
   return (
     <>
@@ -36,6 +51,7 @@ const Rules = (props) => {
                 value={type}
                 onChange={(e) => setType(e.target.value)}
               >
+                <option defaultValue={""}>Select Type</option>
                 <option value="age">Age</option>
                 <option value="credit_score">Credit Score</option>
                 <option value="account_balance">Account Balance</option>
@@ -54,6 +70,7 @@ const Rules = (props) => {
                 className="form-control"
                 id="ruleValue"
                 value={value}
+                placeholder="Enter value"
                 onChange={(e) => setValue(e.target.value)}
               />
             </div>
@@ -71,6 +88,7 @@ const Rules = (props) => {
                 value={operator}
                 onChange={(e) => setOperator(e.target.value)}
               >
+                <option defaultValue={""}>Select Operator</option>
                 <option value=">=">{">="}</option>
                 <option value="<=">{"<="}</option>
                 <option value=">">{">"}</option>
@@ -91,6 +109,7 @@ const Rules = (props) => {
                 className="form-control"
                 id="ruleScore"
                 value={score}
+                placeholder="Enter score"
                 onChange={(e) => setScore(e.target.value)}
               />
             </div>

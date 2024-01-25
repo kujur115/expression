@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Rules from "./Rules";
 import Outputs from "./Outputs";
+import AddedRule from "./AddedRule";
 
 const Inputs = () => {
   const [combinator, setCombinator] = useState("");
@@ -15,7 +16,7 @@ const Inputs = () => {
         <fieldset>
           <legend>Expression Form</legend>
           <div className="mb-3">
-            <label htmlFor="combinator" className="form-label">
+            <label htmlFor="combinator" className="form-label fw-bold">
               Combinator
             </label>
             <select
@@ -29,14 +30,25 @@ const Inputs = () => {
             </select>
           </div>
           <Rules rules={rules} setRules={setRules} />
+          {rules.length > 0 && (
+            <>
+              <hr />
+              <div className="container">
+                <legend>Added Rules</legend>
+
+                {rules.map((rule, i) => (
+                  <AddedRule rule={rule} key={i} />
+                ))}
+              </div>
+            </>
+          )}
           <div className="d-flex justify-content-center align-items-center row">
-            <button onClick={handleSubmit} className="btn btn-primary col-1">
+            <button onClick={handleSubmit} className="btn btn-success col-1">
               Submit
             </button>
           </div>
         </fieldset>
       </form>
-      <hr />
       <Outputs />
     </div>
   );
