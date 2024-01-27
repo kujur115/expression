@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Rules from "./Rules";
-import Outputs from "./Outputs";
 import AddedRule from "./AddedRule";
 
-const Inputs = () => {
-  const [output, setOutput] = useState(null);
+const Inputs = (props) => {
+  const { setOutput } = props;
   const [combinator, setCombinator] = useState("");
   const [rules, setRules] = useState([]);
   const [error, setError] = useState(false);
@@ -79,7 +78,6 @@ const Inputs = () => {
           </div>
         </fieldset>
       </form>
-      {output && <Outputs output={output} />}
     </div>
   );
 };

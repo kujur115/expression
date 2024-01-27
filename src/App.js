@@ -1,15 +1,14 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Inputs from "./components/Inputs";
-import Navbar from "./components/Navbar";
-import Error404 from "./pages/Error404";
+import { Navbar } from "./components";
+import { Error404, Homepage } from "./pages";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Navbar />,
-      children: [{ index: true, element: <Inputs /> }],
+      children: [{ index: true, element: <Homepage /> }],
       errorElement: <Error404 />,
     },
   ]);
