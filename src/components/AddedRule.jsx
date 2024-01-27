@@ -1,11 +1,18 @@
 import React from "react";
 
 const AddedRule = (props) => {
-  const { rule } = props;
+  const { rule, rules, setRules, index } = props;
 
   const { key, output } = rule;
   const { value, score, operator } = output;
-  const handleDelete = (r) => {};
+  const handleDelete = (e) => {
+    e.preventDefault();
+    if (Array.isArray(rules)) {
+      const newRules = [...rules.slice(0, index), ...rules.slice(index + 1)];
+      // rules.splice(index, 1);
+      setRules(newRules);
+    }
+  };
   return (
     <div className="d-flex justify-content-center align-items-center row">
       <div className="col-lg-2 clo-md-4 col-sm-6 col-12">
@@ -73,7 +80,7 @@ const AddedRule = (props) => {
         </div>
       </div>
       <div className="col-lg-2 clo-md-4 col-sm-6 col-12">
-        <button className="btn btn-danger" onClick={() => handleDelete(rule)}>
+        <button className="btn btn-danger" onClick={(e) => handleDelete(e)}>
           Delete
         </button>
       </div>

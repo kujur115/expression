@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Rules = (props) => {
   const [type, setType] = useState("");
@@ -13,7 +14,7 @@ const Rules = (props) => {
     setError(false);
     if (!type || !operator || !value || !score) {
       setError(true);
-      setErrorMsg("enter all the fields");
+      setErrorMsg("Enter all the fields");
       return;
     }
     setRules([
@@ -122,8 +123,11 @@ const Rules = (props) => {
         </div>
       </div>
       {error && (
-        <div className="d-flex justify-content-center align-items-center row">
-          <span className="text-center text-danger">!{errorMsg}</span>
+        <div
+          className="alert alert-danger d-flex align-items-center"
+          role="alert"
+        >
+          <div>{errorMsg}</div>
         </div>
       )}
     </>
